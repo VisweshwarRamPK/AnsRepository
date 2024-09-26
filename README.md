@@ -25,3 +25,8 @@
 23. [Junit5](./Junit5.md)
 24. [Java Coding Guidelines](./Java%20Coding%20Guidelines.md)
 25. [Adapter Pattern](./Adapter%20Pattern.md)
+27. [Factory Pattern](./Factory%20Pattern.md)
+28. [Observer Pattern](./Observer%20Pattern.md)
+29. [Singleton Pattern](./Singleton%20Pattern.md)
+30. [State Pattern](./State%20Pattern.md)
+31. [Visitor Pattern](./Visitor%20Pattern.md)
