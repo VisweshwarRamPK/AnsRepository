@@ -177,5 +177,5 @@ public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
     }
 }
 
-// Other methods also use employeeFacade for similar functionality.
+
 
