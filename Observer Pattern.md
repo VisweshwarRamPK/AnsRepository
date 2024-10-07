@@ -171,7 +171,7 @@ public class ObserverPatternDemo {
 
 }
 
-Example of observer pattern:
+Implementation of observer pattern:
 Observer Interface
 ```java
 package com.example.jdbc.observer;
