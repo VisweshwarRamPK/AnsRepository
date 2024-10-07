@@ -101,7 +101,7 @@ Spring Security uses a chain of filters to process security logic. Some of the c
 * JwtAuthenticationFilter (custom): Filters for JWT-based authentication in stateless applications.
 
 
-
+Implementation of Spring Security
 Filter Configuration
 ```java
 
