@@ -152,7 +152,7 @@ public class FacadePatternExample {
 
 }
 
-Example of Facade Design Pattern:
+Implementation of Facade Design Pattern:
 ```java
 @Autowired
 private EmployeeFacade employeeFacade;
