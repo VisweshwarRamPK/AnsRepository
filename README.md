@@ -31,3 +31,5 @@
 29. [Singleton Pattern](./Singleton%20Pattern.md)
 30. [State Pattern](./State%20Pattern.md)
 31. [Visitor Pattern](./Visitor%20Pattern.md)
+32. [Validation](./Validation%20Pattern.md)
+33. [logging](./logging%20Pattern.md)
