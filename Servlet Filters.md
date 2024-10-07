@@ -55,3 +55,68 @@ Enhancing Performance:
 VIII) COMPONENTS:
 Filter Interface: The main interface defines the core methods (init(), doFilter(), and destroy()) that filters use to intercept and process requests/responses.
 Filter chain: Represents the sequence of filters applied to a request/response. The FilterChain object is used within the doFilter() method to pass the request and response to the next filter or the target servlet. Enables multiple filters to be applied in sequence, creating a processing pipeline.
+
+Example of Servlet Filters:
+
+Create the Filter Class:
+```java
+package com.example.jdbc.filter;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+
+public class EmployeeFilter implements Filter {
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Initialization code, if needed
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        // Pre-processing code (e.g., logging)
+        System.out.println("Filtering request: " + request.getRemoteAddr());
+
+        // Pass the request to the next filter or target resource
+        chain.doFilter(request, response);
+
+        // Post-processing code (e.g., logging)
+        System.out.println("Finished filtering request: " + request.getRemoteAddr());
+    }
+
+    @Override
+    public void destroy() {
+        // Cleanup code, if needed
+    }
+}
+```
+Register the Filter as a Bean:
+```java
+package com.example.jdbc.config;
+
+import com.example.jdbc.filter.EmployeeFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class FilterConfig {
+
+    @Bean
+    public FilterRegistrationBean<EmployeeFilter> loggingFilter() {
+        FilterRegistrationBean<EmployeeFilter> registrationBean = new FilterRegistrationBean<>();
+
+        registrationBean.setFilter(new EmployeeFilter());
+        registrationBean.addUrlPatterns("/employees/*"); // Specify the URL patterns to filter
+        registrationBean.setOrder(1); // Set the order of the filter (if you have multiple filters)
+
+        return registrationBean;
+    }
+}
+```
