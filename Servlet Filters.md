@@ -56,7 +56,7 @@ VIII) COMPONENTS:
 Filter Interface: The main interface defines the core methods (init(), doFilter(), and destroy()) that filters use to intercept and process requests/responses.
 Filter chain: Represents the sequence of filters applied to a request/response. The FilterChain object is used within the doFilter() method to pass the request and response to the next filter or the target servlet. Enables multiple filters to be applied in sequence, creating a processing pipeline.
 
-Example of Servlet Filters:
+Implementation of Servlet Filters:
 
 Create the Filter Class:
 ```java
