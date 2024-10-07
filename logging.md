@@ -1,6 +1,7 @@
 Logging:
 
 Logging in EmployeeController
+```java
 private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
 @GetMapping
@@ -37,6 +38,9 @@ public ResponseEntity<Void> deleteEmployee(@PathVariable String id) {
     employeeService.delete(id);
     return ResponseEntity.noContent().build();
 }
+```
+
+```java
 
 Logging in EmployeeService
 private static final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
