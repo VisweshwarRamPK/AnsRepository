@@ -131,7 +131,7 @@ public class FactoryPatternDemo {
 
 }
 
-Example of Factory Pattern:
+Implementation of Factory Pattern:
 ```java
 EmployeeFactory.java
 package com.example.jdbc.factory;
