@@ -73,3 +73,26 @@
 **Example With Lambda:**
 
 **Runnable r = () -> System.out.println("Hello!");**
+
+Example of Lambda Expressions:
+In findById Method:
+```java
+return employeeRepository.findById(id)
+    .orElseThrow(() -> {
+        logger.error("Employee with id: {} not found", id);
+        return new EmployeeNotFoundException(id);
+    });
+```
+In update Method:
+```java
+return employeeRepository.findById(id)
+    .map(existingEmployee -> {
+        employee.setId(id); // Set the employee ID for update
+        logger.info("Employee updated with id: {}", id);
+        return employeeRepository.save(employee);
+    })
+    .orElseThrow(() -> {
+        logger.error("Employee with id: {} not found for update", id);
+        return new EmployeeNotFoundException(id);
+    });
+```
