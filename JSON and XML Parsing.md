@@ -48,7 +48,7 @@ Unmarshaller unmarshaller = context.createUnmarshaller();
 
 Employee employee = (Employee) unmarshaller.unmarshal(new File("employee.xml"));
 
-Example of JSON to XML Parsing:
+Implementation of JSON to XML Parsing:
 ```java
 
 @PostMapping("/convert")
@@ -63,7 +63,7 @@ public ResponseEntity<String> convertJsonToXml(@RequestBody String json) {
 }
 
 ```
-Example of XML to JSON Parsing:
+Implementation of XML to JSON Parsing:
 ```java
 
 @PostMapping("/convert/xml")
