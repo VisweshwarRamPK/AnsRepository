@@ -152,7 +152,6 @@ public class FacadePatternExample {
 
 }
 
-
 Example of Facade Design Pattern:
 '''java
 @Autowired
@@ -175,6 +174,7 @@ public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
+
 
 
 
