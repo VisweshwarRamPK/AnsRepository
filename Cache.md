@@ -88,7 +88,7 @@
 
 
 * **Hit Ratio**: This is a key metric that measures the percentage of requests served by the cache. A high hit ratio means the cache is being used effectively.
-Example for Simple Inmemory Cache:
+Implemenation of Simple Inmemory Cache:
   ```java
     private final Map<Long, Employee> employeeCache = new ConcurrentHashMap<>();
 
