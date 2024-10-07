@@ -160,3 +160,89 @@ public class TrafficLightSystem {
     }
 
 }
+
+Implementation of State Pattern:
+
+EmployeeState Interface
+```java
+package com.example.jdbc.state;
+
+public interface EmployeeState {
+    String create();
+    String update();
+    String delete();
+}
+```
+
+ActiveState Class
+```java
+package com.example.jdbc.state;
+
+public class ActiveState implements EmployeeState {
+    @Override
+    public String create() {
+        return "Employee is already active. Cannot create.";
+    }
+    @Override
+    public String update() {
+        return "Employee is updated successfully.";
+    }
+    @Override
+    public String delete() {
+        return "Employee is now inactive.";
+    }
+}
+```
+InactiveState Class
+```java
+package com.example.jdbc.state;
+
+public class InactiveState implements EmployeeState {
+    @Override
+    public String create() {
+        return "Employee cannot be created as it is inactive.";
+    }
+    @Override
+    public String update() {
+        return "Employee is now active.";
+    }
+    @Override
+    public String delete() {
+        return "Employee is already inactive. Cannot delete.";
+    }
+}
+```
+
+Employee class
+```java
+package com.example.jdbc.model;
+
+import com.example.jdbc.state.EmployeeState;
+import com.example.jdbc.state.ActiveState;
+
+public class Employee {
+    private long id;
+    private String name;
+    private String position;
+    private double salary;
+    private EmployeeState state;
+
+    public Employee() {
+        this.state = new ActiveState(); // Default state
+    }
+
+    // Other fields, constructors, and methods...
+
+    public String create() {
+        return state.create();
+    }
+
+    public String update() {
+        return state.update();
+    }
+
+    public String delete() {
+        return state.delete();
+    }
+}
+```
