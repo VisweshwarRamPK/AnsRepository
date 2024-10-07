@@ -39,10 +39,9 @@ public ResponseEntity<Void> deleteEmployee(@PathVariable String id) {
     return ResponseEntity.noContent().build();
 }
 ```
-
+Logging in EmployeeService
 ```java
 
-Logging in EmployeeService
 private static final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
 
 public List<Employee> findAll() {
