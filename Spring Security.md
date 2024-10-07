@@ -104,19 +104,61 @@ Spring Security uses a chain of filters to process security logic. Some of the c
 ### **OAuth2 and JWT Support:**
 
 Spring Security also supports OAuth2 for delegated authentication (e.g., using Google, Facebook) and JWT (JSON Web Token) for stateless authentication, where tokens are used to maintain user state without sessions.
+Filter Configuration
+```java
 
-**V)USE OF SPRING SECURITY:**
+package com.example.employee.config;
 
+import com.example.employee.filter.CustomFilter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 
+@Configuration
+public class FilterConfig {
+    @Bean
+    public FilterRegistrationBean<CustomFilter> loggingFilter() {
+        FilterRegistrationBean<CustomFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new CustomFilter());
+        registrationBean.addUrlPatterns("/employees/*");
+        return registrationBean;
+    }
+}
+```
+Security Configuration
+```java
+package com.example.employee.config;
 
-* Protects web applications
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
-**VI)PROBLEMS SOLVED BY SPRING SECURITY:**
+@Configuration
+public class SpringSecurity {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable() // Disable CSRF for simplicity
+            .authorizeHttpRequests()
+                .requestMatchers("/api/employees/**").authenticated()
+                .anyRequest().permitAll()
+            .and()
+            .httpBasic();
+        return http.build();
+    }
 
-**Authentication and Authorization: **Manages both who users are and what they can do.
-
-**Security Against Web Attacks: **Protects applications from CSRF, XSS,  and more.
-
-**Session Management:** Secures user sessions to prevent attacks like hijacking.
-
-**Password Security: **Safely stores and manages user credentials by using BCRYPT.
+    @Bean
+    public UserDetailsService userDetailsService() {
+        UserDetails user = User.withDefaultPasswordEncoder()
+            .username("admin")
+            .password("admin123")
+            .roles("ADMIN")
+            .build();
+        return new InMemoryUserDetailsManager(user);
+    }
+}
