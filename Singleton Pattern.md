@@ -47,7 +47,7 @@ The Singleton pattern resolves these issues by:
 * Making the constructor **private** so that only the class itself can create an instance.
 
 
-Example of Singleton Design Pattern:
+Implementation of Singleton Design Pattern:
 ```java
 package com.example.jdbc.util;
 
