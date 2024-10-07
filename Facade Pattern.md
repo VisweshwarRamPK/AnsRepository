@@ -151,3 +151,31 @@ public class FacadePatternExample {
     }
 
 }
+
+'''java
+
+Example of Facade Design Pattern:
+
+@Autowired
+private EmployeeFacade employeeFacade;
+@PostMapping
+public ResponseEntity<String> createEmployee(@Valid @RequestBody Employee employee, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+        return ResponseEntity.badRequest().body("Error: " + bindingResult.getFieldError().getDefaultMessage());
+    }
+    String result = employeeFacade.createEmployee(employee);
+    return new ResponseEntity<>(result, HttpStatus.CREATED);
+}
+
+@GetMapping("/{id}")
+public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+    Employee employee = employeeFacade.getEmployeeById(id);
+    if (employee != null) {
+        return new ResponseEntity<>(employee, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+}
+
+// Other methods also use employeeFacade for similar functionality.
+
