@@ -5,7 +5,7 @@
 **JUnit 5 is the latest version of the JUnit testing framework used for writing and executing unit testing in Java.**
 
 
-Example of Junit5:
+Implementation of Junit5:
 ```java
 
 package com.example.employee.model;
