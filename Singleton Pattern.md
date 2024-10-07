@@ -47,39 +47,37 @@ The Singleton pattern resolves these issues by:
 * Making the constructor **private** so that only the class itself can create an instance.
 
 
-### **VI) FEATURES::**
+Example of Singleton Design Pattern:
+```java
+package com.example.jdbc.util;
 
+import java.io.IOException;
 
+public class JsonToXmlConverter {
+    private static JsonToXmlConverter instance;
 
-* **Lazy Instantiation**: The Singleton object is created only when it's needed, which optimizes memory use.
-* **Global Access**: Singleton provides a global point of access to the instance, ensuring consistency across the application.
-* **Thread Safety**: In a multi-threaded environment, Singleton may need to be implemented with locking mechanisms to avoid multiple threads creating separate instances.
-* **Private Constructor**: To prevent creating objects from outside the class, its constructor is private.
-
-**VII) IMPLEMENTATION CODE:**
-
-public class Singleton {
-
-    // Static variable to hold the one instance
-
-    private static Singleton instance;
-
-    // Private constructor to prevent instantiation
-
-    private Singleton() { }
-
-    // Static method to provide global access to the single instance
-
-    public static Singleton getInstance() {
-
-        if (instance == null) {
-
-            instance = new Singleton();
-
-        }
-
-        return instance;
-
+    private JsonToXmlConverter() {
     }
 
+    public static JsonToXmlConverter getInstance() {
+        if (instance == null) {
+            instance = new JsonToXmlConverter();
+        }
+        return instance;
+    }
+
+    public String convertJsonToXml(String json) throws IOException {
+        if (json == null || json.isEmpty()) {
+            throw new IOException("Input JSON is empty or null");
+        }
+        return "<root>" + json + "</root>";
+    }
+
+    public String convertXmlToJson(String xml) throws IOException {
+        if (xml == null || xml.isEmpty()) {
+            throw new IOException("Input XML is empty or null");
+        }
+        return xml.replace("<root>", "").replace("</root>", ""); // Example: remove root element
+    }
 }
+```
