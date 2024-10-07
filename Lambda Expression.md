@@ -74,7 +74,7 @@
 
 **Runnable r = () -> System.out.println("Hello!");**
 
-Example of Lambda Expressions:
+Implementation of Lambda Expressions:
 In findById Method:
 ```java
 return employeeRepository.findById(id)
