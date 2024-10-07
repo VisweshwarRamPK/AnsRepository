@@ -1,4 +1,4 @@
-Logging:
+Implementation of Logging:
 
 Logging in EmployeeController
 ```java
