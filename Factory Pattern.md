@@ -130,3 +130,66 @@ public class FactoryPatternDemo {
     }
 
 }
+
+Example of Factory Pattern:
+```java
+EmployeeFactory.java
+package com.example.jdbc.factory;
+
+import com.example.jdbc.repository.EmployeeRepository;
+import com.example.jdbc.service.EmployeeService;
+import com.example.jdbc.util.JsonToXmlConverter;
+
+public interface EmployeeFactory {
+    EmployeeService createEmployeeService();
+    EmployeeRepository createEmployeeRepository();
+    JsonToXmlConverter createJsonToXmlConverter();
+}
+DefaultEmployeeFactory.java
+package com.example.jdbc.factory;
+
+import com.example.jdbc.repository.EmployeeRepository;
+import com.example.jdbc.service.EmployeeService;
+import com.example.jdbc.util.JsonToXmlConverter;
+import org.springframework.stereotype.Component;
+
+@Component
+public class DefaultEmployeeFactory implements EmployeeFactory {
+
+    @Override
+    public EmployeeService createEmployeeService() {
+        return new EmployeeService(createEmployeeRepository());
+    }
+
+    @Override
+    public EmployeeRepository createEmployeeRepository() {
+        return new EmployeeRepository();
+    }
+
+    @Override
+    public JsonToXmlConverter createJsonToXmlConverter() {
+        return new JsonToXmlConverter();
+    }
+}
+EmployeeController:
+package com.example.jdbc.controller;
+
+import com.example.jdbc.factory.EmployeeFactory;
+import com.example.jdbc.service.EmployeeService;
+import com.example.jdbc.util.JsonToXmlConverter;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RestController
+@RequestMapping("/employees")
+public class EmployeeController {
+
+    private final EmployeeService employeeService;
+    private final JsonToXmlConverter jsonToXmlConverter;
+
+    public EmployeeController(EmployeeFactory employeeFactory) {
+        this.employeeService = employeeFactory.createEmployeeService();
+        this.jsonToXmlConverter = employeeFactory.createJsonToXmlConverter();
+    }
+}
+
