@@ -152,10 +152,9 @@ public class FacadePatternExample {
 
 }
 
-'''java
 
 Example of Facade Design Pattern:
-
+'''java
 @Autowired
 private EmployeeFacade employeeFacade;
 @PostMapping
