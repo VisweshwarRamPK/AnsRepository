@@ -101,9 +101,7 @@ Spring Security uses a chain of filters to process security logic. Some of the c
 * JwtAuthenticationFilter (custom): Filters for JWT-based authentication in stateless applications.
 
 
-### **OAuth2 and JWT Support:**
 
-Spring Security also supports OAuth2 for delegated authentication (e.g., using Google, Facebook) and JWT (JSON Web Token) for stateless authentication, where tokens are used to maintain user state without sessions.
 Filter Configuration
 ```java
 
